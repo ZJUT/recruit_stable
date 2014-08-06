@@ -1,4 +1,10 @@
 <?php
+if(!defined('ROOT_PATH')){
+	header("HTTP/1.0 404 Not Found");
+	exit;
+}
+
+
 func_need_login();	/**< 判断用户是否已登录 */
 func_need_admin();	/**< 判断用户是否有管理权限 */
 $token = isset($_POST['token'])?$_POST['token']:null;

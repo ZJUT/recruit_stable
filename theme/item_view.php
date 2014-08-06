@@ -1,4 +1,10 @@
 <?php
+if(!defined('ROOT_PATH')){
+	header("HTTP/1.0 404 Not Found");
+	exit;
+}
+
+
 func_need_login();
 $title = "记录详情 - ".$config['site']['sitename'];
 func_header($title);

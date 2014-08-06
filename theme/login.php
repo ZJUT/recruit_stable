@@ -1,4 +1,10 @@
 <?php
+if(!defined('ROOT_PATH')){
+	header("HTTP/1.0 404 Not Found");
+	exit;
+}
+
+
 if(func_is_login()) header("location:".func_url("show","index"));	//判断是否登录,已登录则跳转到管理中心
 
 $title = "登录 - ".$config['site']['sitename'];

@@ -1,4 +1,11 @@
-<?php func_need_login(); ?>
+<?php
+if(!defined('ROOT_PATH')){
+	header("HTTP/1.0 404 Not Found");
+	exit;
+}
+
+func_need_login();
+?>
 <script type="text/javascript">
 	$(function(){
 		$("#nav_item_<?php echo "{$active}"; ?>").addClass("active");

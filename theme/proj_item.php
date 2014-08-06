@@ -1,4 +1,10 @@
 <?php
+if(!defined('ROOT_PATH')){
+	header("HTTP/1.0 404 Not Found");
+	exit;
+}
+
+
 func_need_login();
 $title = "项目内容 - ".$config['site']['sitename'];
 func_header($title);
@@ -89,10 +95,25 @@ if(is_json(trim($param['jcase']))){
 	$case = json_decode(trim($param['jcase']), true);
 	if(count($case) > 0){
 		//var_dump($case);
-		if(isset($case[$item[$param['name']]])){
-			echo htmlspecialchars($case[$item[$param['name']]]);
+		if((strcasecmp($param['type'],"checkbox") == 0) && is_json($item[$param['name']])){
+			$item_vals = json_decode($item[$param['name']]);
+			if(count($item_vals) > 0){
+				foreach($item_vals as $item_val){
+					if(isset($case[$item_val])){
+						echo htmlspecialchars($case[$item_val])."&nbsp;|&nbsp;";
+					}else{
+						echo htmlspecialchars($item_val)."&nbsp;|&nbsp;";
+					}
+				}
+			}else{
+				echo "";
+			}
 		}else{
-			echo htmlspecialchars($item[$param['name']]);
+			if(isset($case[$item[$param['name']]])){
+				echo htmlspecialchars($case[$item[$param['name']]]);
+			}else{
+				echo htmlspecialchars($item[$param['name']]);
+			}
 		}
 	}else{
 		echo htmlspecialchars($item[$param['name']]);

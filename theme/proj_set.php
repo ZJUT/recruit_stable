@@ -1,4 +1,10 @@
 <?php
+if(!defined('ROOT_PATH')){
+	header("HTTP/1.0 404 Not Found");
+	exit;
+}
+
+
 func_need_login();
 $title = "项目设置 - ".$config['site']['sitename'];
 func_header($title);

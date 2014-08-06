@@ -110,10 +110,23 @@ if(is_array($params) && count($params) > 0){
 				json_out(0, htmlspecialchars($param['label'])."不准为空");
 			}
 		}
-		if(trim($param['regex']) != ""){	/**< 参数正则表达式校验格式 */
-			if(!preg_match('/'.$param['regex'].'/', $value)){
-				json_out(0, htmlspecialchars($param['label'])."出错");
+		if(is_array($value)){
+			foreach($value as $val){
+				if(trim($param['regex']) != ""){	/**< 参数正则表达式校验格式 */
+					if(!preg_match('/'.$param['regex'].'/', $val)){
+						json_out(0, htmlspecialchars($param['label'])."出错");
+					}
+				}
 			}
+		}else{
+			if(trim($param['regex']) != ""){	/**< 参数正则表达式校验格式 */
+				if(!preg_match('/'.$param['regex'].'/', $value)){
+					json_out(0, htmlspecialchars($param['label'])."出错");
+				}
+			}
+		}
+		if(strcasecmp($param['type'],"checkbox") == 0){
+			$value = json_encode($value);
 		}
 		$params_data[]	= array(
 			"name"	=> $param['name'],

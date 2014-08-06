@@ -1,4 +1,9 @@
 <?php
+if(!defined('ROOT_PATH')){
+	header("HTTP/1.0 404 Not Found");
+	exit;
+}
+
 func_need_login();
 $pid = isset($_GET['pid'])?intval($_GET['pid']):"";
 $id = isset($_GET['id'])?intval($_GET['id']):"";

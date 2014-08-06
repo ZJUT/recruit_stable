@@ -1,4 +1,10 @@
 <?php
+if(!defined('ROOT_PATH')){
+	header("HTTP/1.0 404 Not Found");
+	exit;
+}
+
+
 func_need_login();	/**< 判断用户是否已登录 */
 $token = isset($_GET['token'])?$_GET['token']:null;
 if(func_verify_token($token)){	/**< 验证token */
